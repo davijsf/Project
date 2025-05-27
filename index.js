@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const parseLinhaParaUser = require('./parser'); // importa a função do parser
 
-fs.readFile('TASK-BCC-LP1-2025.1-N2.csv', 'utf8', (err, dados) => {
+fs.readFile('./Project/TASK-BCC-LP1-2025.1-N2.csv', 'utf8', (err, dados) => {
     if(err) {
         console.log(err);
         return;
@@ -23,3 +23,5 @@ fs.readFile('TASK-BCC-LP1-2025.1-N2.csv', 'utf8', (err, dados) => {
         }
     });
 });
+
+
