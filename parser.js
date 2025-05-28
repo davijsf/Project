@@ -21,8 +21,8 @@ function parseLinhaParaUser(cabecalhos, valores) {
     const extracurricularTasksIndex = cabecalhos.indexOf('extracurricularTasks');
 
     // Daily Hours
-    const dailyHoursStudyIndex = cabecalhos.indexOf('dailyHoursStudy');
     const dailyHoursScreenIndex = cabecalhos.indexOf('dailyHoursScreen');
+    const dailyHoursStudyIndex = cabecalhos.indexOf('dailyHoursStudy');
     const dailyHoursPhoneIndex = cabecalhos.indexOf('dailyHoursPhone');
     const dailyHoursLaptopIndex = cabecalhos.indexOf('dailyHoursLaptop');
     const dailyHoursTabletdailyHoursTVIndex = cabecalhos.indexOf('dailyHoursTabletdailyHoursTV');
