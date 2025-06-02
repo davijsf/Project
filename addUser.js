@@ -1,6 +1,10 @@
 const fs = require("fs");
 const readline = require("readline");
 
+const User = require("./tdus/User");
+const BinarySearchTree = require("./BinarySearchTree");
+const bst = new BinarySearchTree();
+
 const filePath = "./file.json";
 const dados = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
@@ -101,3 +105,6 @@ async function adicionarUsuario() {
 }
 
 adicionarUsuario();
+const novoUserObj = new User(novoUsuario);
+bst.insert(novoUserObj);
+console.log("\nNovo usuário adicionado e inserido na árvore com sucesso!");
