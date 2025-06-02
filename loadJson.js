@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-function carregarJson(path) {
-    const raw = fs.readFileSync(path);
-    return JSON.parse(raw);
+function carregarJson(caminho) {
+    const dados = fs.readFileSync(caminho, "utf-8");
+    return JSON.parse(dados);
 }
 
 module.exports = carregarJson;

@@ -1,35 +1,49 @@
-const fs = require('node:fs');
-const parseLinhaParaUser = require('./parser'); // importa a função do parser
-const carregarJson = require("./loadJson");
-const criarUserRecords = require("./createUserRecords");
+const fs = require('fs');
+const parseLinhaParaUser = require('./parser');
+const carregarJson = require('./loadJson');
+const criarUserRecords = require('./createUserRecords');
+const BinarySearchTree = require('./BinarySearchTree');
 
+const caminhoCSV = './TASK-BCC-LP1-2025.1-N2.csv';
+const caminhoJSON = './file.json';
 
+const bst = new BinarySearchTree();
 
-fs.readFile('./TASK-BCC-LP1-2025.1-N2.csv', 'utf8', (err, dados) => {
-    if(err) {
-        console.log(err);
+fs.readFile(caminhoCSV, 'utf8', (err, dados) => {
+    if (err) {
+        console.error("Erro ao ler o CSV:", err);
         return;
     }
 
     const linhas = dados.trim().split('\n');
     const cabecalhos = linhas[0].split(',');
-    
+
     const jsonLikeUserList = linhas.slice(1).map(linha => {
         const valores = linha.split(',');
         return parseLinhaParaUser(cabecalhos, valores);
     });
-    
-    fs.writeFile('file.json', JSON.stringify(jsonLikeUserList, null, 2), 'utf8', (err) => {
-        if(err) {
-            console.error("Erro ao salvar JSON:", err);
-        } else {
-            console.log("Arquivo JSON salvo com sucesso!");
 
-            const jsonLikeUserList = carregarJson("file.json");
-            const userRecords = criarUserRecords(jsonLikeUserList);
-            console.log(userRecords[0]);
+    fs.writeFile(caminhoJSON, JSON.stringify(jsonLikeUserList, null, 2), 'utf8', (err) => {
+        if (err) {
+            console.error("Erro ao salvar JSON:", err);
+            return;
         }
+
+        console.log("Arquivo JSON salvo com sucesso!");
+
+        const dadosAtualizados = carregarJson(caminhoJSON);
+        const userRecords = criarUserRecords(dadosAtualizados);
+
+        userRecords.forEach(user => bst.insert(user));
+
+        // console.log("IDs dos usuários na árvore (ordem crescente):");
+        // console.log(bst.inOrder().map(u => u.id));
+
+        // Exemplo: remover usuário pelo id
+        // const idParaRemover = "user_3";
+        // bst.remove(idParaRemover);
+
+        // console.log(`IDs após remover ${idParaRemover}:`);
+        // console.log(bst.inOrder().map(u => u.id));
     });
 });
-
-
