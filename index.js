@@ -35,7 +35,6 @@ fs.readFile(caminhoCSV, 'utf8', (err, dados) => {
         const userRecords = criarUserRecords(dadosAtualizados);
 
         userRecords.forEach(user => bst.insert(user));
-
         // console.log("IDs dos usuários na árvore (ordem crescente):");
         // console.log(bst.inOrder().map(u => u.id));
 

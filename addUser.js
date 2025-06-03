@@ -1,6 +1,4 @@
 const fs = require("fs");
-const readline = require("readline");
-
 const User = require("./tdus/User");
 const BinarySearchTree = require("./BinarySearchTree");
 const bst = new BinarySearchTree();
@@ -8,18 +6,8 @@ const bst = new BinarySearchTree();
 const filePath = "./file.json";
 const dados = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
-function perguntar(pergunta) {
-    return new Promise(resolve => {
-        rl.question(pergunta, resposta => resolve(resposta));
-    });
-}
-
-async function adicionarUsuario() {
+async function adicionarUsuario(bst, perguntar) {
     try {
         const id = `user_${dados.length + 1}`;
         const name = await perguntar("Nome: ");
@@ -94,17 +82,18 @@ async function adicionarUsuario() {
         };
 
         dados.push(novoUsuario);
-        fs.writeFileSync(filePath, JSON.stringify(dados, null, 2), "utf-8");
 
-        console.log("\n✅ Novo usuário adicionado com sucesso!");
+        fs.writeFileSync(filePath, JSON.stringify(dados, null, 2), "utf-8");
+        
+        // Cria objeto User e insere na árvore:
+        const novoUserObj = new User(novoUsuario);
+        bst.insert(novoUserObj);
+
+        console.log("\n✅ Novo usuário adicionado e inserido na árvore com sucesso!");
+
     } catch (err) {
         console.error("❌ Erro ao adicionar usuário:", err);
-    } finally {
-        rl.close();
     }
 }
 
-adicionarUsuario();
-const novoUserObj = new User(novoUsuario);
-bst.insert(novoUserObj);
-console.log("\nNovo usuário adicionado e inserido na árvore com sucesso!");
+module.exports = adicionarUsuario;
