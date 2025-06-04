@@ -107998,5 +107998,59 @@
         "LevelOfAddictionInSocialNetworks": null
       }
     }
+  },
+  {
+    "id": "user_2001",
+    "name": "Nick",
+    "gender": "masc",
+    "age": 25,
+    "relationshipStatus": "Casado",
+    "addressType": "Rural",
+    "MostUsedSocialPlatform": "Linkdln",
+    "PerformanceWrittenTest": 9.7,
+    "job": {
+      "jobName": "Devops",
+      "jobStatus": "Empregado",
+      "jobEnvironment": "on-site",
+      "jobProductivity": "70"
+    },
+    "vocationalTraining": {
+      "studyLevel": "Ensino médio completo",
+      "studyLevelParents": "EM completo",
+      "extracurricularTasks": false
+    },
+    "dailyHours": {
+      "dailyHoursStudy": 0,
+      "dailyHoursScreen": 0,
+      "dailyHoursPhone": 0,
+      "dailyHoursLaptop": 0,
+      "dailyHoursTabletdailyHoursTV": 8,
+      "dailyHoursSocialMedia": 0,
+      "dailyHoursWork": 0,
+      "dailyHoursEntertainment": 0,
+      "dailyHoursGaming": 0,
+      "dailyHoursPhysicalActivity": 12,
+      "DaysPhysicalActivity": 6,
+      "DailyMinutesMindfulness": null,
+      "DailyHoursNetflix": null
+    },
+    "healthIndicators": {
+      "healthyDiet": 0,
+      "bloodPressure": "120/60",
+      "heartRate": null,
+      "weigthCategory": null,
+      "sleepQuality": 11,
+      "dailyCaffeineIntakeMg": null,
+      "MentalHealthIndicators": {
+        "MentalHealthLevel": null,
+        "MentalHealthLevelMood": 9,
+        "MentalHealthLevelStress": 7,
+        "MentalHealthLevelAnxiety": 2,
+        "MentalHealthLevelDepression": 4,
+        "IndicationOfTherapy": true,
+        "MentalHealthyPossibleRisk": "s",
+        "LevelOfAddictionInSocialNetworks": 0
+      }
+    }
   }
 ]
