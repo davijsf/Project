@@ -47,7 +47,13 @@ async function main() {
                 break;
 
             case "3":
-                const idAtualizar = await perguntar("Digite o ID do usuário a atualizar: ");
+                let idAtualizar;
+                if(global.idParaAtualizar){
+                    idAtualizar = global.idParaAtualizar;
+                    delete global.idParaAtualizar;
+                }else{
+                    idAtualizar = await perguntar("Digite o ID do usuário a atualizar:");
+                }
                 console.log("\n---- O que deseja atualizar? ---- ");
                 console.log("1. Dados pessoais (IDADE, STATUS DE RELACIONAMENTO)");
                 console.log("2. Dados vocacionais");
@@ -132,6 +138,22 @@ async function main() {
                     resultados.slice(0, 3).forEach((user, idx) => {
                         console.log(`${idx + 1}. Nome: ${user.name}, ID ${user.id}`);
                     })
+                }
+                const desejaAcao = await perguntar("Deseja remover ou atualizar algum desses usuários? (s/n):");
+                if(desejaAcao.trim().toLowerCase() === "s"){
+                    const idSelecionado = await perguntar("Digite o ID do usuário:");
+                    const acao = await perguntar("digite 'remover' ou 'atualizar':");
+
+                    if(acao.trim().toLowerCase() === "remover"){
+                        await removeUserById(idSelecionado, bst, filePath);
+                    }else if(acao.trim().toLowerCase() === "atualizar"){
+                        opcao = "3";
+                        global.idParaAtualizar = idSelecionado;
+                        continue;
+                    }else{
+                        console.log("Ação inválida");
+                    }
+
                 }
                 break;
 
