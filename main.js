@@ -31,6 +31,7 @@ async function main() {
         console.log("1. Adicionar usuário");
         console.log("2. Remover usuário pelo ID");
         console.log("3. Atualizar usuário");
+        console.log("4. buscar usuário pelo nome");
         console.log("0. Sair");
 
         opcao = await perguntar("Escolha uma opção: ");
@@ -120,6 +121,20 @@ async function main() {
                 await atualizarUsuario(idAtualizar, novosDados, bst, filePath);
                 break;
 
+            case "4":
+                const termoBusca = await perguntar("Digite o nome do usuário:")
+                const resultados = buscarUsuariosPorNome(userRecords, termoBusca);
+
+                if(resultados.length === 0){
+                console.log("eNnhum usuário encontrado.");
+                }else{
+                    console.log("Resultados encontrados:");
+                    resultados.slice(0, 3).forEach((user, idx) => {
+                        console.log(`${idx + 1}. Nome: ${user.name}, ID ${user.id}`);
+                    })
+                }
+                break;
+
             case "0":
                 console.log("Saindo...");
                 break;
@@ -134,3 +149,8 @@ async function main() {
 }
 
 main();
+function buscarUsuariosPorNome(userRecords, termo){
+   return userRecords.filter(
+    user => user.name && user.name.toLowerCase().includes(termo.toLowerCase())
+);
+}
