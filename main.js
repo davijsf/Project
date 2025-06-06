@@ -27,6 +27,7 @@ async function main() {
     let opcao;
 
     do {
+        console.clear();
         console.log("------- MENU DE OPÇÕES -------");
         console.log("1. Adicionar usuário");
         console.log("2. Remover usuário pelo ID");
@@ -46,31 +47,66 @@ async function main() {
                 await removeUserById(id, bst, filePath); 
                 break;
 
-            case "3":
-                let idAtualizar;
-                if(global.idParaAtualizar){
-                    idAtualizar = global.idParaAtualizar;
-                    delete global.idParaAtualizar;
+                
+                case "4":
+                const termoBusca = await perguntar("Digite o nome do usuário:")
+                const resultados = buscarUsuariosPorNome(userRecords, termoBusca);
+                
+                if(resultados.length === 0){
+                    console.log("Nenhum usuário encontrado.");
+                    break;
                 }else{
-                    idAtualizar = await perguntar("Digite o ID do usuário a atualizar:");
+                    console.log("Resultados encontrados:");
+                    resultados.slice(0, 3).forEach((user, idx) => {
+                        console.log(`${idx + 1}. Nome: ${user.name}, ID: ${user.id}`);
+                    })
                 }
-                console.log("\n---- O que deseja atualizar? ---- ");
-                console.log("1. Dados pessoais (IDADE, STATUS DE RELACIONAMENTO)");
-                console.log("2. Dados vocacionais");
-                console.log("3. Registros de Tracking");
-                console.log("4. Dados de trabalho");
-                console.log("5. Dados de saúde");
-                console.log("6. Dados de saúde mental");
+                const desejaAcao = await perguntar("Deseja remover ou atualizar algum desses usuários? (s/n):");
+                if(desejaAcao.trim().toLowerCase() === "s"){
+                    const idSelecionado = await perguntar("Digite o ID do usuário:");
+                    const acao = await perguntar("digite 'remover' ou 'atualizar':");
 
+                    if(acao.trim().toLowerCase() === "remover"){
+                        await removeUserById(idSelecionado, bst, filePath);
+                        break;
+
+                    }else if(acao.trim().toLowerCase() === "atualizar"){
+                        global.idParaAtualizar = idSelecionado;
+
+                    }else{
+                        console.log("Ação inválida");
+                        break;
+                    }
+                    console.clear();
+                }
+
+                
+                case "3":
+                    let idAtualizar;
+                    if(global.idParaAtualizar){
+                        idAtualizar = global.idParaAtualizar;
+                        delete global.idParaAtualizar;
+                    }else{
+                        idAtualizar = await perguntar("Digite o ID do usuário a atualizar:");
+                    }
+                    console.clear();
+                    console.log("\n---- O que deseja atualizar? ---- ");
+                    console.log("1. Dados pessoais (IDADE, STATUS DE RELACIONAMENTO)");
+                    console.log("2. Dados vocacionais");
+                    console.log("3. Registros de Tracking");
+                    console.log("4. Dados de trabalho");
+                    console.log("5. Dados de saúde");
+                    console.log("6. Dados de saúde mental");
+                    
                 const op = await perguntar("Escolha uma opção: ");
                 let novosDados = {};
-
+                
                 if (op === "1") {
                     const newAge = await perguntar("Digite a nova idade: ");
                     const newStatusRelationship = await perguntar("Digite seu novo status de relacionamento: ");
                     novosDados.age = parseInt(newAge);
                     novosDados.relationshipStatus = newStatusRelationship;
-
+                    
                 } else if (op === "2") {
                     const newStudyLevel = await perguntar("Digite seu nível de estudo: ");
                     const newStudyLevelParents = await perguntar("Digite o nível de estudo dos pais: ");
@@ -78,7 +114,7 @@ async function main() {
                     novosDados.studyLevel = newStudyLevel;
                     novosDados.studyLevelParents = newStudyLevelParents;
                     novosDados.extracurricularTasks = newExtracurricularTasks;
-
+                    
                 } else if (op === "3") {
                     novosDados.tracking = {
                         dailyHoursScreen: parseFloat(await perguntar("Horas de tela por dia: ")),
@@ -95,7 +131,7 @@ async function main() {
                         dailyMinutesMindfulness: parseFloat(await perguntar("Minutos de meditação por dia: ")),
                         dailyHoursNetflix: parseFloat(await perguntar("Horas de Netflix por dia: "))
                     };
-
+                    
                 } else if (op === "4") {
                     novosDados.job = {
                         jobName: await perguntar("Digite o nome do trabalho: "),
@@ -103,7 +139,7 @@ async function main() {
                         jobEnvironment: await perguntar("Ambiente de trabalho: "),
                         jobProductivity: await perguntar("Produtividade no trabalho: ")
                     };
-
+                    
                 } else if (op === "5") {
                     novosDados.healthIndicators = {
                         healthyDiet: parseInt(await perguntar("Segue uma alimentação saudável? (1 - Sim, 0 - Não): ")),
@@ -113,7 +149,7 @@ async function main() {
                         sleepQuality: parseInt(await perguntar("Qualidade do sono (1 a 10): ")),
                         dailyCaffeineIntakeMg: parseFloat(await perguntar("Mg de cafeína por dia: "))
                     };
-
+                    
                 } else if (op === "6") {
                     novosDados.mentalHealth = {
                         stressLevel: parseInt(await perguntar("Nível de estresse (1 a 10): ")),
@@ -123,50 +159,20 @@ async function main() {
                         sleepDisorder: await perguntar("Possui distúrbio de sono? (Sim/Não): ")
                     };
                 }
-
+                
                 await atualizarUsuario(idAtualizar, novosDados, bst, filePath);
                 break;
 
-            case "4":
-                const termoBusca = await perguntar("Digite o nome do usuário:")
-                const resultados = buscarUsuariosPorNome(userRecords, termoBusca);
+                case "0":
+                    console.log("Saindo...");
+                    break;
 
-                if(resultados.length === 0){
-                console.log("Nenhum usuário encontrado.");
-                }else{
-                    console.log("Resultados encontrados:");
-                    resultados.slice(0, 3).forEach((user, idx) => {
-                        console.log(`${idx + 1}. Nome: ${user.name}, ID: user_${user.id}`);
-                    })
+                default:
+                    console.log("Opção inválida!");
                 }
-                const desejaAcao = await perguntar("Deseja remover ou atualizar algum desses usuários? (s/n):");
-                if(desejaAcao.trim().toLowerCase() === "s"){
-                    const idSelecionado = await perguntar("Digite o ID do usuário:");
-                    const acao = await perguntar("digite 'remover' ou 'atualizar':");
-
-                    if(acao.trim().toLowerCase() === "remover"){
-                        await removeUserById(idSelecionado, bst, filePath);
-                    }else if(acao.trim().toLowerCase() === "atualizar"){
-                        opcao = "3";
-                        global.idParaAtualizar = idSelecionado;
-                        continue;
-                    }else{
-                        console.log("Ação inválida");
-                    }
-
-                }
-                break;
-
-            case "0":
-                console.log("Saindo...");
-                break;
-
-            default:
-                console.log("Opção inválida!");
-        }
-
+                
     } while (opcao !== "0");
-
+    
     rl.close();
 }
 
