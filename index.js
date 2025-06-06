@@ -35,14 +35,5 @@ fs.readFile(caminhoCSV, 'utf8', (err, dados) => {
         const userRecords = criarUserRecords(dadosAtualizados);
 
         userRecords.forEach(user => bst.insert(user));
-        // console.log("IDs dos usuários na árvore (ordem crescente):");
-        // console.log(bst.inOrder().map(u => u.id));
-
-        // Exemplo: remover usuário pelo id
-        // const idParaRemover = "user_3";
-        // bst.remove(idParaRemover);
-
-        // console.log(`IDs após remover ${idParaRemover}:`);
-        // console.log(bst.inOrder().map(u => u.id));
     });
 });

@@ -132,11 +132,11 @@ async function main() {
                 const resultados = buscarUsuariosPorNome(userRecords, termoBusca);
 
                 if(resultados.length === 0){
-                console.log("eNnhum usuário encontrado.");
+                console.log("Nenhum usuário encontrado.");
                 }else{
                     console.log("Resultados encontrados:");
                     resultados.slice(0, 3).forEach((user, idx) => {
-                        console.log(`${idx + 1}. Nome: ${user.name}, ID ${user.id}`);
+                        console.log(`${idx + 1}. Nome: ${user.name}, ID: user_${user.id}`);
                     })
                 }
                 const desejaAcao = await perguntar("Deseja remover ou atualizar algum desses usuários? (s/n):");

@@ -37,14 +37,14 @@ class BinarySearchTree {
     }
 
     remove(id) {
-        this.root = this._removeNode(this.root, id); // corrigido: era this.node
+        this.root = this._removeNode(this.root, id);
     }
 
     _removeNode(node, id) {
         if (node === null) return null;
 
         if (id < node.user.id) {
-            node.left = this._removeNode(node.left, id); // corrigido: faltava o segundo argumento
+            node.left = this._removeNode(node.left, id);
             return node;
         } else if (id > node.user.id) {
             node.right = this._removeNode(node.right, id);
