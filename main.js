@@ -9,6 +9,8 @@ const removeUserById = require("./removeUser");
 const atualizarUsuario = require("./updateUser");
 const exportarRegistros = require("./exportarRegistros");
 const importarRegistros = require("./importarRegistros");
+const buscarPorId = require("./buscaUser");
+const buscarUsuariosPorNome  = require("./buscaUser");
 
 
 const rl = readline.createInterface({
@@ -167,16 +169,30 @@ async function main() {
                 
                 await atualizarUsuario(idAtualizar, novosDados, bst, filePath);
                 break;
-
                 case "5":
-                    exportarRegistros(userRecords);
+                    const term = await perguntar("digite o ID:");
+                    const result = buscarPorId(userRecords, term);
+                    console.log(result);
+
+                    if(result.length === 0){
+                        console.log("Nenhum usuário encontrado.");
+                        break;
+                    }else{
+                        console.log("Resultados encontrados:");
+                        result.slice(0, 3).forEach((user, idx) => {
+                            console.log(`${idx + 1}. Nome: ${user.name}, ID: ${user.id}`);
+                    })
+                }
                     break;
-                
                 case "6":
                     userRecords.length = 0;
                     const novos = importarRegistros();
                     userRecords.push(...novos);
                     break;
+                case "7":
+                    exportarRegistros(userRecords);
+                    break;
+                
 
                 case "0":
                     console.log("Saindo...");
@@ -194,8 +210,3 @@ async function main() {
 }
 
 main();
-function buscarUsuariosPorNome(userRecords, termo){
-   return userRecords.filter(
-    user => user.name && user.name.toLowerCase().includes(termo.toLowerCase())
-);
-}
