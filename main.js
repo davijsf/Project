@@ -7,6 +7,9 @@ const BinarySearchTree = require("./BinarySearchTree");
 const adicionarUsuario = require("./addUser");
 const removeUserById = require("./removeUser");
 const atualizarUsuario = require("./updateUser");
+const exportarRegistros = require("./exportarRegistros");
+const importarRegistros = require("./importarRegistros");
+
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -27,14 +30,16 @@ async function main() {
     let opcao;
 
     do {
-        console.clear();
         console.log("------- MENU DE OPÇÕES -------");
         console.log("1. Adicionar usuário");
         console.log("2. Remover usuário pelo ID");
         console.log("3. Atualizar usuário");
         console.log("4. buscar usuário pelo nome");
+        console.log("5. Buscar usuário pelo ID");
+        console.log("6. Exportar registros");
+        console.log("7. Importar Registros");
         console.log("0. Sair");
-
+        
         opcao = await perguntar("Escolha uma opção: ");
 
         switch (opcao) {
@@ -46,7 +51,7 @@ async function main() {
                 const id = await perguntar("Digite o ID do usuário: ");
                 await removeUserById(id, bst, filePath); 
                 break;
-
+                
                 
                 case "4":
                 const termoBusca = await perguntar("Digite o nome do usuário:")
@@ -79,7 +84,7 @@ async function main() {
                     }
                     console.clear();
                 }
-
+                
                 
                 case "3":
                     let idAtualizar;
@@ -98,7 +103,7 @@ async function main() {
                     console.log("5. Dados de saúde");
                     console.log("6. Dados de saúde mental");
                     
-                const op = await perguntar("Escolha uma opção: ");
+                    const op = await perguntar("Escolha uma opção: ");
                 let novosDados = {};
                 
                 if (op === "1") {
@@ -163,6 +168,16 @@ async function main() {
                 await atualizarUsuario(idAtualizar, novosDados, bst, filePath);
                 break;
 
+                case "5":
+                    exportarRegistros(userRecords);
+                    break;
+                
+                case "6":
+                    userRecords.length = 0;
+                    const novos = importarRegistros();
+                    userRecords.push(...novos);
+                    break;
+
                 case "0":
                     console.log("Saindo...");
                     break;
@@ -170,6 +185,8 @@ async function main() {
                 default:
                     console.log("Opção inválida!");
                 }
+            await perguntar("Pressione ENTER para continuar...");
+            console.clear();
                 
     } while (opcao !== "0");
     
