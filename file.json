@@ -3,8 +3,8 @@
     "id": "user_1",
     "name": "Maria Cláudia",
     "gender": "Female",
-    "age": 51,
-    "relationshipStatus": "In Relationship",
+    "age": 99,
+    "relationshipStatus": "Casadoo",
     "addressType": "Urban",
     "MostUsedSocialPlatform": "Instagram",
     "PerformanceWrittenTest": null,
@@ -219,8 +219,8 @@
     "id": "user_6",
     "name": "Not informed",
     "gender": null,
-    "age": 20,
-    "relationshipStatus": "Complicated",
+    "age": 21,
+    "relationshipStatus": "Solteiro",
     "addressType": "Suburban",
     "MostUsedSocialPlatform": "Instagram",
     "PerformanceWrittenTest": null,
@@ -107838,164 +107838,110 @@
     }
   },
   {
-    "id": "user_1999",
-    "name": "Not informed",
-    "gender": "Male",
-    "age": 19,
-    "relationshipStatus": null,
-    "addressType": "Urban",
-    "MostUsedSocialPlatform": null,
-    "PerformanceWrittenTest": null,
-    "job": {
-      "jobName": null,
-      "jobStatus": "Student",
-      "jobEnvironment": "On-site",
-      "jobProductivity": 55.7
-    },
-    "vocationalTraining": {
-      "studyLevel": null,
-      "studyLevelParents": null,
-      "extracurricularTasks": null
-    },
-    "dailyHours": {
-      "dailyHoursStudy": null,
-      "dailyHoursScreen": 4.2,
-      "dailyHoursPhone": 4.4,
-      "dailyHoursLaptop": 2.3,
-      "dailyHoursTabletdailyHoursTV": null,
-      "dailyHoursSocialMedia": 1.7,
-      "dailyHoursWork": 7.5,
-      "dailyHoursEntertainment": 2,
-      "dailyHoursGaming": 0.7,
-      "dailyHoursPhysicalActivity": 2.6,
-      "DaysPhysicalActivity": 3,
-      "DailyMinutesMindfulness": 13.4,
-      "DailyHoursNetflix": null
-    },
-    "healthIndicators": {
-      "healthyDiet": 0,
-      "bloodPressure": null,
-      "heartRate": null,
-      "weigthCategory": null,
-      "sleepQuality": 1,
-      "dailyCaffeineIntakeMg": 123.7,
-      "MentalHealthIndicators": {
-        "MentalHealthLevel": 28,
-        "MentalHealthLevelMood": 4,
-        "MentalHealthLevelStress": 8,
-        "MentalHealthLevelAnxiety": 1,
-        "MentalHealthLevelDepression": 11,
-        "IndicationOfTherapy": false,
-        "MentalHealthyPossibleRisk": "High",
-        "LevelOfAddictionInSocialNetworks": null
-      }
-    }
-  },
-  {
-    "id": "user_2000",
-    "name": "Not informed",
-    "gender": "Female",
-    "age": 15,
-    "relationshipStatus": null,
-    "addressType": "Urban",
-    "MostUsedSocialPlatform": null,
-    "PerformanceWrittenTest": null,
-    "job": {
-      "jobName": null,
-      "jobStatus": "Employed",
-      "jobEnvironment": "Hybrid",
-      "jobProductivity": 51.6
-    },
-    "vocationalTraining": {
-      "studyLevel": null,
-      "studyLevelParents": null,
-      "extracurricularTasks": null
-    },
-    "dailyHours": {
-      "dailyHoursStudy": null,
-      "dailyHoursScreen": 4.5,
-      "dailyHoursPhone": 3.6,
-      "dailyHoursLaptop": 1.2,
-      "dailyHoursTabletdailyHoursTV": null,
-      "dailyHoursSocialMedia": 2.7,
-      "dailyHoursWork": 8.5,
-      "dailyHoursEntertainment": 3.5,
-      "dailyHoursGaming": 0.9,
-      "dailyHoursPhysicalActivity": 6.3,
-      "DaysPhysicalActivity": 2,
-      "DailyMinutesMindfulness": 10,
-      "DailyHoursNetflix": null
-    },
-    "healthIndicators": {
-      "healthyDiet": 0,
-      "bloodPressure": null,
-      "heartRate": null,
-      "weigthCategory": null,
-      "sleepQuality": 5,
-      "dailyCaffeineIntakeMg": 173.1,
-      "MentalHealthIndicators": {
-        "MentalHealthLevel": 59,
-        "MentalHealthLevelMood": 7,
-        "MentalHealthLevelStress": 10,
-        "MentalHealthLevelAnxiety": 0,
-        "MentalHealthLevelDepression": 17,
-        "IndicationOfTherapy": false,
-        "MentalHealthyPossibleRisk": "Medium",
-        "LevelOfAddictionInSocialNetworks": null
-      }
-    }
-  },
-  {
     "id": "user_2001",
-    "name": "Nick",
-    "gender": "masc",
-    "age": 25,
-    "relationshipStatus": "Casado",
-    "addressType": "Rural",
-    "MostUsedSocialPlatform": "Linkdln",
-    "PerformanceWrittenTest": 9.7,
+    "name": "jeová",
+    "gender": "Masculino",
+    "age": 84,
+    "relationshipStatus": "viúvo",
+    "addressType": "Urbano",
+    "MostUsedSocialPlatform": "",
+    "PerformanceWrittenTest": 10,
     "job": {
-      "jobName": "Devops",
-      "jobStatus": "Empregado",
-      "jobEnvironment": "on-site",
-      "jobProductivity": "70"
+      "jobName": "Escritor",
+      "jobStatus": "Aposentado",
+      "jobEnvironment": "Casa",
+      "jobProductivity": 30.14
     },
     "vocationalTraining": {
-      "studyLevel": "Ensino médio completo",
-      "studyLevelParents": "EM completo",
-      "extracurricularTasks": false
+      "studyLevel": "Mestre em letras",
+      "studyLevelParents": null,
+      "extracurricularTasks": true
     },
     "dailyHours": {
-      "dailyHoursStudy": 0,
+      "dailyHoursStudy": 6,
       "dailyHoursScreen": 0,
       "dailyHoursPhone": 0,
       "dailyHoursLaptop": 0,
-      "dailyHoursTabletdailyHoursTV": 8,
+      "dailyHoursTabletdailyHoursTV": 5,
       "dailyHoursSocialMedia": 0,
-      "dailyHoursWork": 0,
-      "dailyHoursEntertainment": 0,
-      "dailyHoursGaming": 0,
-      "dailyHoursPhysicalActivity": 12,
-      "DaysPhysicalActivity": 6,
+      "dailyHoursWork": 9,
+      "dailyHoursEntertainment": null,
+      "dailyHoursGaming": null,
+      "dailyHoursPhysicalActivity": null,
+      "DaysPhysicalActivity": null,
       "DailyMinutesMindfulness": null,
       "DailyHoursNetflix": null
     },
     "healthIndicators": {
-      "healthyDiet": 0,
-      "bloodPressure": "120/60",
+      "healthyDiet": null,
+      "bloodPressure": "",
       "heartRate": null,
       "weigthCategory": null,
-      "sleepQuality": 11,
+      "sleepQuality": null,
       "dailyCaffeineIntakeMg": null,
       "MentalHealthIndicators": {
         "MentalHealthLevel": null,
-        "MentalHealthLevelMood": 9,
-        "MentalHealthLevelStress": 7,
-        "MentalHealthLevelAnxiety": 2,
-        "MentalHealthLevelDepression": 4,
-        "IndicationOfTherapy": true,
-        "MentalHealthyPossibleRisk": "s",
-        "LevelOfAddictionInSocialNetworks": 0
+        "MentalHealthLevelMood": null,
+        "MentalHealthLevelStress": null,
+        "MentalHealthLevelAnxiety": null,
+        "MentalHealthLevelDepression": null,
+        "IndicationOfTherapy": false,
+        "MentalHealthyPossibleRisk": "",
+        "LevelOfAddictionInSocialNetworks": null
+      }
+    }
+  },
+  {
+    "id": "user_1999",
+    "name": "jesus ",
+    "gender": "",
+    "age": null,
+    "relationshipStatus": "",
+    "addressType": "",
+    "MostUsedSocialPlatform": "",
+    "PerformanceWrittenTest": null,
+    "job": {
+      "jobName": "",
+      "jobStatus": "",
+      "jobEnvironment": "",
+      "jobProductivity": null
+    },
+    "vocationalTraining": {
+      "studyLevel": "",
+      "studyLevelParents": null,
+      "extracurricularTasks": false
+    },
+    "dailyHours": {
+      "dailyHoursStudy": null,
+      "dailyHoursScreen": null,
+      "dailyHoursPhone": null,
+      "dailyHoursLaptop": null,
+      "dailyHoursTabletdailyHoursTV": null,
+      "dailyHoursSocialMedia": null,
+      "dailyHoursWork": null,
+      "dailyHoursEntertainment": null,
+      "dailyHoursGaming": null,
+      "dailyHoursPhysicalActivity": null,
+      "DaysPhysicalActivity": null,
+      "DailyMinutesMindfulness": null,
+      "DailyHoursNetflix": null
+    },
+    "healthIndicators": {
+      "healthyDiet": null,
+      "bloodPressure": "",
+      "heartRate": null,
+      "weigthCategory": null,
+      "sleepQuality": null,
+      "dailyCaffeineIntakeMg": null,
+      "MentalHealthIndicators": {
+        "MentalHealthLevel": null,
+        "MentalHealthLevelMood": null,
+        "MentalHealthLevelStress": null,
+        "MentalHealthLevelAnxiety": null,
+        "MentalHealthLevelDepression": null,
+        "IndicationOfTherapy": false,
+        "MentalHealthyPossibleRisk": "",
+        "LevelOfAddictionInSocialNetworks": null
       }
     }
   }

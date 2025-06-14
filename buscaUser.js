@@ -15,7 +15,9 @@ function buscarUsuariosPorNome(userRecords, termo){
 )};
 
 function buscarPorId(userRecords, id){
-    return userRecords.find(user => user.id === id);
+    const id_formatado = `user_${id}`
+    return userRecords.find(user => user.id === id_formatado);
 }
-module.exports = buscarPorId;
-module.exports= buscarUsuariosPorNome;
+module.exports = {
+    buscarUsuariosPorNome, buscarPorId
+};
