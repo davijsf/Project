@@ -11,6 +11,7 @@ const exportarRegistros = require("./exportarRegistros");
 const importarRegistros = require("./importarRegistros");
 const importarRegistrosSelecionados = require("./importarRegistrosSelecionados");
 const { buscarPorId, buscarUsuariosPorNome } = require("./buscaUser");
+const analisarColunaMenu = require("./analisarColunaMenu");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -40,6 +41,7 @@ async function main() {
         console.log("6. Importar registros (arquivo mais recente)");
         console.log("7. Exportar registros");
         console.log("8. Importar registros (escolher arquivo)");
+        console.log("9. Analisar coluna dos dados.");
         console.log("0. Sair");
 
         opcao = await perguntar("Escolha uma opção: ");
@@ -212,6 +214,10 @@ async function main() {
                 userRecords.length = 0;
                 const selecionados = await importarRegistrosSelecionados(perguntar);
                 userRecords.push(...selecionados);
+                break;
+
+            case "9":
+                await analisarColunaMenu(userRecords, perguntar);
                 break;
 
             case "0":

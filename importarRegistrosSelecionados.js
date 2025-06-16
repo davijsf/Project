@@ -3,39 +3,36 @@ const path = require("path");
 const criarUserRecords = require("./createUserRecords");
 
 async function importarRegistrosSelecionados(perguntar) {
-    const recordsPath = path.join(__dirname, "records");
+    const pasta = path.join(__dirname, "records");
 
-    if (!fs.existsSync(recordsPath)) {
-        console.log("Pasta de registros não encontrada.");
+    if (!fs.existsSync(pasta)) {
+        console.log("A pasta 'records' não existe.");
         return [];
     }
 
-    const arquivos = fs.readdirSync(recordsPath).filter(nome => {
-        const fullPath = path.join(recordsPath, nome);
-        return fs.statSync(fullPath).isFile() && nome.endsWith(".json");
-    });
+    const arquivos = fs.readdirSync(pasta).filter(arquivo => arquivo.startsWith("Records") && arquivo.endsWith(".json"));
 
     if (arquivos.length === 0) {
-        console.log("Nenhum arquivo de registro encontrado.");
+        console.log("Nenhum arquivo de registros encontrado.");
         return [];
     }
 
-    console.log("\nArquivos disponíveis para importação:");
-    arquivos.forEach((nome, idx) => console.log(`${idx + 1}. ${nome}`));
+    console.log("Arquivos disponíveis:");
+    arquivos.forEach((arq, i) => console.log(`${i + 1}. ${arq}`));
 
-    const escolha = await perguntar("Digite o número do arquivo que deseja importar: ");
-    const indice = parseInt(escolha) - 1;
+    const opcao = await perguntar("Escolha o número do arquivo: ");
+    const index = parseInt(opcao) - 1;
 
-    if (indice < 0 || indice >= arquivos.length) {
+    if (index < 0 || index >= arquivos.length) {
         console.log("Opção inválida.");
         return [];
     }
 
-    const arquivoEscolhido = path.join(recordsPath, arquivos[indice]);
-    const conteudo = fs.readFileSync(arquivoEscolhido, "utf-8");
+    const caminho = path.join(pasta, arquivos[index]);
+    const conteudo = fs.readFileSync(caminho, "utf-8");
     const dados = JSON.parse(conteudo);
 
-    console.log(`Importando do arquivo: ${arquivos[indice]}`);
+    console.log(`Arquivo importado: ${arquivos[index]}`);
     return criarUserRecords(dados);
 }
 
