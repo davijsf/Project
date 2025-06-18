@@ -12,6 +12,7 @@ const importarRegistros = require("./importarRegistros");
 const importarRegistrosSelecionados = require("./importarRegistrosSelecionados");
 const { buscarPorId, buscarUsuariosPorNome } = require("./buscaUser");
 const analisarColunaMenu = require("./analisarColunaMenu");
+const {analisarColuna, analisarCorrelacao} = require("./analisarColunas");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -30,7 +31,7 @@ function perguntar(msg) {
 
 async function main() {
     let opcao;
-
+    
     do {
         console.log("------- MENU DE OPÇÕES -------");
         console.log("1. Adicionar usuário");
@@ -42,14 +43,15 @@ async function main() {
         console.log("7. Exportar registros");
         console.log("8. Importar registros (escolher arquivo)");
         console.log("9. Analisar coluna dos dados.");
+        console.log("10. Calcular correlação de coluna");
         console.log("0. Sair");
-
+        
         opcao = await perguntar("Escolha uma opção: ");
-
+        
         let novosDadosJson;
-
+        
         switch (opcao) {
-
+            
             case "1":
                 await adicionarUsuario(bst, perguntar);
                 novosDadosJson = carregarJson(filePath);
@@ -57,11 +59,11 @@ async function main() {
                 userRecords.push(...criarUserRecords(novosDadosJson));
                 break;
 
-            case "2":
-                const idRemover = await perguntar("Digite o ID do usuário: ");
-                await removeUserById(idRemover, bst, filePath);
+                case "2":
+                    const idRemover = await perguntar("Digite o ID do usuário: ");
+                    await removeUserById(idRemover, bst, filePath);
 
-                // Recarrega JSON e reconstrói tudo
+                    // Recarrega JSON e reconstrói tudo
                 novosDadosJson = carregarJson(filePath);
                 userRecords.length = 0;
                 userRecords.push(...criarUserRecords(novosDadosJson));
@@ -220,6 +222,12 @@ async function main() {
                 await analisarColunaMenu(userRecords, perguntar);
                 break;
 
+            
+                case "10":
+                    const coluna = await perguntar("digite o nome da coluna numérica para correlaciona: ");
+                    analisarCorrelacao(userRecords, coluna);
+
+                break;
             case "0":
                 console.log("Saindo...");
                 break;
