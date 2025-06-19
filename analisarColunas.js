@@ -60,13 +60,13 @@ function analisarColuna(userRecords, coluna) {
 
     function classificarCorrelacao(r){
         const absR = Math.abs(r);
-        if(absR < 0.1) return "nula";
-        if(absR < 0.35) return "fraca";
-        if(absR < 0.65) return "media";
-        if(absR < 0.95) return "forte";
-        if(absR < 0.99) return "muito forte";
-        if(absR >= 0.99) return "perfeita";
-        return "nula";
+        if(absR < 0.1) return "Nula";
+        if(absR < 0.35) return "Fraca";
+        if(absR < 0.65) return "Media";
+        if(absR < 0.95) return "Forte";
+        if(absR < 0.99) return "Muito forte";
+        if(absR >= 0.99) return "Perfeita";
+        return "Nula";
     }
 
     function analisarCorrelacao(userRecords, coluna){
@@ -87,7 +87,34 @@ function analisarColuna(userRecords, coluna) {
 
         const r = correlacaoPearson(xValidos, yValidos);
         const classificacao = classificarCorrelacao(r);
-        console.log(`Coeficiente de correlação de pearson entre "${coluna}" e "performanceWhittenTest": ${r.toFixed(4)}`);
+        console.log(`Coeficiente de correlação de pearson entre "${coluna}" e "PerformanceWhittenTest": ${r.toFixed(4)}`);
         console.log(`classificação da correlação: ${classificacao}` );
     }
-module.exports = {analisarColuna, analisarCorrelacao};
+
+    function top10Correlacoes(userRecords){
+        const todasColunas = Object.keys(userRecords[0]).filter(col => col  !== "PerformanceWrittenTest");
+        const colunasNumericas = todasColunas.filter(col => userRecords.some(user => typeof user[col] === "number" && !isNaN(user[col]))
+    );
+    const resultados = colunasNumericas.map(coluna => {
+        const x = userRecords.map(user => user[coluna]);
+        const y = userRecords.map(user => user["PerformanceWrittenTest"]);
+        const paresValidos = x
+            .map((valor, i) => ({ x: valor, y: y[i]}))
+            .filter(par => typeof par.x === "number" && !isNaN(par.x) && typeof par.y === "number" && !isNaN(par.y));
+        if(paresValidos.length === 0) return null;
+        const xValidos = paresValidos.map(par => par.x);
+        const yValidos = paresValidos.map(par => par.y);
+        const r = correlacaoPearson(xValidos, yValidos);
+        const classificacao = classificarCorrelacao(r);
+        return { coluna, r, classificacao};
+    }).filter(Boolean);
+    resultados.sort((a, b) => Math.abs(b.r) - Math.abs(a.r));
+
+    const top10 = resultados.slice(0,10);
+
+    console.log("\ntop 10 colunas mais correlacionadas:");
+    top10.forEach((item, idx) => {
+        console.log(`${idx + 1}. ${item.coluna} | correlação: ${item.r.toFixed(4)} | classificação: ${item.classificacao}`)
+    })
+    }
+module.exports = {analisarColuna, analisarCorrelacao, top10Correlacoes};

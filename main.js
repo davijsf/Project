@@ -12,7 +12,7 @@ const importarRegistros = require("./importarRegistros");
 const importarRegistrosSelecionados = require("./importarRegistrosSelecionados");
 const { buscarPorId, buscarUsuariosPorNome } = require("./buscaUser");
 const analisarColunaMenu = require("./analisarColunaMenu");
-const {analisarColuna, analisarCorrelacao} = require("./analisarColunas");
+const {analisarColuna, analisarCorrelacao, top10Correlacoes} = require("./analisarColunas");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -44,6 +44,7 @@ async function main() {
         console.log("8. Importar registros (escolher arquivo)");
         console.log("9. Analisar coluna dos dados.");
         console.log("10. Calcular correlação de coluna");
+        console.log("11. Top 10 correlações com a nota do exame");
         console.log("0. Sair");
         
         opcao = await perguntar("Escolha uma opção: ");
@@ -228,6 +229,11 @@ async function main() {
                     analisarCorrelacao(userRecords, coluna);
 
                 break;
+
+            case "11":
+                top10Correlacoes(userRecords);
+                break;
+
             case "0":
                 console.log("Saindo...");
                 break;
