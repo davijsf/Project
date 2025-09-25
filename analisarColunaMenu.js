@@ -1,4 +1,4 @@
-const analisarColuna = require("./analisarColunas");
+const {analisarColuna} = require("./analisarColunas");
 
 async function analisarColunaMenu(userRecords, perguntar) {
     const opcoes = [
